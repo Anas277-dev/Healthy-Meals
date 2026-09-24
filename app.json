@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Healthify - Healthy Meals, Happier Lives",
+    "slug": "healthify",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "backgroundColor": "#14291B",
+      "adaptiveIcon": {
+        "backgroundColor": "#14291B",
+        "foregroundImage": "./assets/icon.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    }
+  }
+}
+
