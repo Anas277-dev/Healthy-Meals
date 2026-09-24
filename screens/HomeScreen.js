@@ -37,8 +37,15 @@ export default function HomeScreen() {
     else if (item === "Contact Us" || item === "Contact") targetKey = "Contact Us";
 
     const targetY = sectionYOffsets.current[targetKey] ?? 0;
-    scrollViewRef.current?.scrollTo({ y: targetY, animated: true });
+    
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: targetY, behavior: "smooth" });
+    }
+    if (scrollViewRef.current?.scrollTo) {
+      scrollViewRef.current.scrollTo({ y: targetY, animated: true });
+    }
   };
+
 
   return (
     <SafeAreaView className="flex-1 w-full bg-background min-h-screen relative">
@@ -47,13 +54,7 @@ export default function HomeScreen() {
         onNavigate={handleNavigate}
       />
 
-      <ScrollView
-        ref={scrollViewRef}
-        showsVerticalScrollIndicator={false}
-        className="flex-1 w-full"
-        contentContainerStyle={{ flexGrow: 1, width: "100%" }}
-      >
-
+      <View className="flex-1 w-full bg-[#F7F8F4]">
         <View onLayout={(e) => handleSectionLayout("Home", e)}>
           <Hero
             onExplore={() => handleNavigate("Growth Plans")}
@@ -100,7 +101,8 @@ export default function HomeScreen() {
         <View onLayout={(e) => handleSectionLayout("Contact Us", e)}>
           <Footer onNavigate={handleNavigate} />
         </View>
-      </ScrollView>
+      </View>
+
 
       {/* Floating WhatsApp Action Button */}
       <WhatsAppButton />
