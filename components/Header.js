@@ -115,16 +115,27 @@ export default function Header({ activeSection = "Home", onNavigate }) {
         )}
       </View>
 
-      {/* Mobile Menu Dropdown */}
-      {isMobile && mobileMenuOpen && (
-        <View className="w-full bg-white border-b border-[#E5E9DF] px-6 py-4 space-y-2 shadow-lg">
+      {/* Mobile Menu Dropdown with Smooth Slide & Fade Animation */}
+      {isMobile && (
+        <View
+          className={`w-full bg-white border-b border-[#E5E9DF] px-6 transition-all duration-300 ease-in-out overflow-hidden shadow-lg ${
+            mobileMenuOpen
+              ? "max-h-[480px] opacity-100 py-4"
+              : "max-h-0 opacity-0 py-0 border-b-0 pointer-events-none"
+          }`}
+          style={{
+            transitionProperty: "max-height, opacity, padding",
+            transitionDuration: "350ms",
+            transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+        >
           {NAV_ITEMS.map((item) => {
             const isActive = activeSection === item;
             return (
               <TouchableOpacity
                 key={item}
                 onPress={() => handleNavPress(item)}
-                className={`py-3 px-4 rounded-xl flex-row items-center justify-between ${
+                className={`py-3 px-4 rounded-xl flex-row items-center justify-between transition-colors ${
                   isActive ? "bg-[#F0F4E6]" : "active:bg-gray-50"
                 }`}
               >
@@ -154,6 +165,7 @@ export default function Header({ activeSection = "Home", onNavigate }) {
           </TouchableOpacity>
         </View>
       )}
+
     </SafeAreaView>
   );
 }
