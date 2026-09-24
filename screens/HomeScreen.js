@@ -49,9 +49,11 @@ export default function HomeScreen() {
 
       <ScrollView
         ref={scrollViewRef}
+        showsVerticalScrollIndicator={false}
         className="flex-1 w-full"
         contentContainerStyle={{ flexGrow: 1, width: "100%" }}
       >
+
         <View onLayout={(e) => handleSectionLayout("Home", e)}>
           <Hero
             onExplore={() => handleNavigate("Growth Plans")}
